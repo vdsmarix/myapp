@@ -1,16 +1,58 @@
-# myapp
+import 'package:flutter/material.dart';
 
-A new Flutter project.
+void main() {
+  runApp(MyApp());
+}
 
-## Getting Started
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
 
-This project is a starting point for a Flutter application.
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-A few resources to get you started if this is your first Flutter project:
+class _MyHomePageState extends State<MyHomePage> {
+  String _message = 'Olá, Mundo!';
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+  void _changeMessage() {
+    setState(() {
+      _message = 'Você clicou no botão!';
+    });
+  }
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Exemplo de App Flutter'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              _message,
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _changeMessage,
+              child: Text('Clique aqui'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
